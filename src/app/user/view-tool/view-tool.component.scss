@@ -1,0 +1,287 @@
+$primary-color: #B491E5;
+$background-color: #ffffff;
+$secondary-background: #E4E4E6;
+$text-color: #2D3032;
+$approve-color: #4CAF50;
+$reject-color: #E57373;
+$button-hover-opacity: 0.9;
+
+/* Main Container Styles */
+.tool-page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 50px; /* Space between containers */
+  animation: fadeIn 1s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.available-tools-container,
+.tool-requests-container {
+  width: 55%; /* Increased width for available tools */
+  background-color: $background-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.8s ease-in-out;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.tool-requests-container {
+  width: 40%; /* Slightly narrower for tool requests */
+}
+
+h2 {
+  color: $primary-color;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+  animation: popIn 0.8s ease-in-out;
+
+  @keyframes popIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+/* Search Input Container */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+
+  .search-input {
+    width: 80%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 8px $primary-color;
+    }
+  }
+}
+
+/* Table Styles */
+.table-container {
+  overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  animation: fadeInTable 0.8s ease-in-out;
+
+  @keyframes fadeInTable {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Status Indicators */
+span.available {
+  color: $approve-color;
+  font-weight: bold;
+}
+
+span.in-use,
+span.out-of-service {
+  color: $reject-color;
+}
+
+/* Button Animations */
+.request-button {
+    background-color: $approve-color;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100px; /* Ensure uniform width */
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: $button-hover-opacity;
+    }
+  }
+  
+  .unavailable-button {
+    background-color: $reject-color;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+    width: 100px; /* Match width with Request button */
+  }
+  
+/* History Button */
+.clear-history-button {
+  background-color: #ff7043;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: $button-hover-opacity;
+  }
+}
+
+/* Popup Animations */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.3s ease;
+
+  @keyframes fadeInOverlay {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.popup-content {
+  background-color: $background-color;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: scaleIn 0.4s ease;
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+.popup-content h3 {
+  color: $primary-color;
+  margin-bottom: 20px;
+}
+
+.popup-content label {
+  display: block;
+  margin-top: 10px;
+  color: $text-color;
+}
+
+.popup-content input,
+.popup-content textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 8px $primary-color;
+  }
+}
+
+.popup-content .popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-content .popup-button {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    opacity: $button-hover-opacity;
+  }
+}
+
+.popup-content .submit-button {
+  background-color: $primary-color;
+  color: #fff;
+}
+
+.popup-content .cancel-button {
+  background-color: $reject-color;
+  color: #fff;
+}

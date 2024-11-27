@@ -1,0 +1,303 @@
+.about-container {
+    padding: 50px;
+    text-align: center;
+    background: linear-gradient(to bottom, #f3f4f6, #ffffff);
+    color: #2d3032;
+  
+    .hero {
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+        background: linear-gradient(to bottom, #f8f9fc, #ffffff);
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      
+        h1 {
+          font-size: 2.8rem;
+          font-weight: bold;
+          color: #6d50a8;
+          margin-bottom: 20px;
+          text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          animation: fadeIn 1s ease-in-out;
+        }
+      
+        p {
+          font-size: 1.2rem;
+          color: #7d7f80;
+          line-height: 1.8;
+          max-width: 800px;
+          text-align: center; /* Center the paragraph text */
+          margin: 0 auto;
+          animation: fadeIn 1.5s ease-in-out;
+        }
+      }
+      
+      /* Animations for smooth transitions */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+    .horizontal-sections {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+  
+      .section {
+        flex: 1;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: justify; /* Center and justify text for body content */
+        animation: slideIn 1s ease-in-out;
+        transition: transform 0.3s;
+  
+        &:hover {
+          transform: scale(1.02);
+        }
+  
+        h2 {
+          font-size: 1.8rem;
+          color: #6d50a8;
+          margin-bottom: 15px;
+          position: relative;
+          text-align: left; /* Keep the title left-aligned */
+  
+          .underline {
+            display: block;
+            height: 4px;
+            background-color: #b491e5;
+            width: 80px; /* Keep it short for aesthetics */
+            margin-top: 5px;
+            border-radius: 2px;
+            animation: underlineGrow 1s ease-in-out;
+          }
+        }
+  
+        p, ul {
+          font-size: 1rem;
+          color: #2d3032;
+          line-height: 1.6;
+        }
+  
+        ul {
+          list-style: disc;
+          padding-left: 20px;
+  
+          li {
+            margin-bottom: 10px;
+            color: #555;
+  
+            strong {
+              color: #6d50a8;
+            }
+          }
+        }
+      }
+  
+      .company-section {
+        background: linear-gradient(to right, #e5d9f2, #f9f7fc);
+        color: #2d3032;
+      }
+    }
+  }
+  
+  .developer-info h2 {
+    font-size: 3rem;
+    color: #6d50a8;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: titleAnimation 1.5s ease-out;
+  }
+  
+  .developer-info h2::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, #6d50a8, #b491e5, #6d50a8);
+    animation: underlineAnimation 2s ease-out infinite;
+  }
+  
+  @keyframes titleAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes underlineAnimation {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 50%;
+    }
+    100% {
+      width: 100%;
+    }
+}
+  
+  .developer-card {
+    display: inline-block;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 420px;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    animation: cardAnimation 1.5s ease-in-out;
+  }
+  
+  .developer-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .developer-card img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .developer-card img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .developer-card h3 {
+    font-size: 2rem;
+    color: #6d50a8;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    animation: textFadeIn 1.5s ease-out;
+  }
+  
+  .developer-card .role {
+    font-size: 1.2rem;
+    color: #7d7f80;
+    margin-bottom: 25px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .developer-details {
+    font-size: 1.2rem;
+    color: #2d3032;
+    margin-top: 10px;
+    text-align: left;
+    line-height: 1.5;
+  }
+  
+  .developer-details p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+  }
+  
+  .developer-details p span {
+    font-weight: 600;
+    color: #6d50a8;
+  }
+  
+  .developer-details a {
+    color: #6d50a8;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .developer-details a:hover {
+    text-decoration: underline;
+  }
+  
+  @keyframes cardAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes textFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes underlineGrow {
+    from {
+      width: 0;
+    }
+    to {
+      width: 80px; /* Matches underline size */
+    }
+  }
+  

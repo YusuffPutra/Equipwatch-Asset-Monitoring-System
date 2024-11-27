@@ -1,0 +1,207 @@
+$primary-color: #B39CD0; // Softer purple shade
+$background-color: #ffffff; // White background
+$secondary-background: #f0f0f0; // Light grey background for elements
+$text-color: #555; // Medium grey for text
+$accent-color: #7D7F80; // Slightly darker grey
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $background-color;
+  animation: backgroundGlow 5s infinite alternate;
+
+  @keyframes backgroundGlow {
+    from { background-color: $background-color; }
+    to { background-color: lighten($primary-color, 45%); }
+  }
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  gap: 60px; // Space between title and login box
+  padding: 20px;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+.login-title {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: $primary-color;
+  text-transform: uppercase;
+  text-align: left;
+  display: inline-block;
+  opacity: 1; // Ensure the parent container is visible
+  animation: glowPulse 1s infinite alternate; // Glow effect for the whole title
+  
+
+  span {
+    display: inline-block; // Treat each letter as a block for individual animations
+    transform: translateY(20px); // Start with each letter slightly below
+    cursor : default;
+    opacity: 0; // Fully transparent initially
+    animation: fadeInLetter 1s ease-out forwards; // Fade-in animation for each letter
+    transition: transform 0.4s ease, color 0.5s ease; // Smooth hover effect
+    
+    &:hover {
+      transform: scale(1.15); // Letter grows on hover
+      color: lighten($primary-color, 10%); // Slightly brighten on hover
+    }
+  
+
+    // Add delay for each letter based on its position
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.1s; }
+    &:nth-child(3) { animation-delay: 0.2s; }
+    &:nth-child(4) { animation-delay: 0.3s; }
+    &:nth-child(5) { animation-delay: 0.4s; }
+    &:nth-child(6) { animation-delay: 0.5s; }
+    &:nth-child(7) { animation-delay: 0.6s; }
+    &:nth-child(8) { animation-delay: 0.7s; }
+    &:nth-child(9) { animation-delay: 0.8s; }
+    &:nth-child(10) { animation-delay: 0.9s; }
+    &:nth-child(11) { animation-delay: 1s; }
+    &:nth-child(12) { animation-delay: 1.1s; }
+    &:nth-child(13) { animation-delay: 1.2s; }
+    &:nth-child(14) { animation-delay: 1.3s; }
+    &:nth-child(15) { animation-delay: 1.4s; }
+    &:nth-child(16) { animation-delay: 1.5s; }
+    &:nth-child(17) { animation-delay: 1.6s; }
+    &:nth-child(18) { animation-delay: 1.7s; }
+    &:nth-child(19) { animation-delay: 1.8s; }
+  }
+
+  // Individual letter fade-in animation
+  @keyframes fadeInLetter {
+    0% {
+      transform: translateY(20px); // Start below
+      opacity: 0; // Fully transparent
+    }
+    100% {
+      transform: translateY(0); // Final position
+      opacity: 1; // Fully visible
+    }
+  }
+
+  // Glow effect for the entire title
+  @keyframes glowPulse {
+    0% {
+      text-shadow: 0 0 5px $primary-color, 0 0 10px $primary-color;
+    }
+    100% {
+      text-shadow: 0 0 15px lighten($primary-color, 20%), 0 0 25px lighten($primary-color, 30%);
+    }
+  }
+}
+
+
+.login-box {
+  width: 350px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: $secondary-background;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideUp 1.2s ease-out;
+
+  &:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  form {
+    width: 100%; // Ensures form and children take full width
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%; // Consistent width for inputs
+}
+
+.form-group label {
+  font-weight: bold;
+  color: $text-color;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 12px;
+  border: 1px solid $accent-color;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: $accent-color;
+  background-color: #e6e6e6;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: darken($primary-color, 10%);
+    outline: none;
+    box-shadow: 0 0 5px rgba(179, 156, 208, 0.5);
+  }
+}
+
+.form-group input::placeholder {
+  color: $text-color;
+  opacity: 0.8;
+}
+
+.login-button {
+  width: 25%; // Same width as input fields
+  padding: 10px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  animation: buttonGlow 2s infinite alternate;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes buttonGlow {
+    from { box-shadow: 0 0 5px $primary-color; }
+    to { box-shadow: 0 0 15px lighten($primary-color, 20%); }
+  }
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  text-align: center;
+  animation: shake 0.3s ease-out;
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+  }
+}

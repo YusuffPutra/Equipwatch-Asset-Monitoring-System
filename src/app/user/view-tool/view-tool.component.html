@@ -1,0 +1,88 @@
+<div class="tool-page-container">
+    <!-- Available Tools Section -->
+    <div class="available-tools-container">
+      <h2>Available Tools</h2>
+      <div class="search-container">
+        <input type="text" placeholder="Search tools..." [(ngModel)]="searchTerm" (input)="applySearch()" class="search-input">
+      </div>
+  
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tool Name</th>
+              <th>Model Number</th>
+              <th>Brand</th>
+              <th>Status</th>
+              <th>Location</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tool of filteredTools">
+              <td>{{ tool.Name }}</td>
+              <td>{{ tool.ModelNumber }}</td>
+              <td>{{ tool.Brand }}</td>
+              <td>
+                <span [ngClass]="{
+                  'available': tool.Status === 'Available',
+                  'in-use': tool.Status === 'In Use',
+                  'out-of-service': tool.Status === 'Out of Service'
+                }">
+                  {{ tool.Status }}
+                </span>
+              </td>
+              <td>{{ tool.Location }}</td>
+              <td>
+                <button *ngIf="tool.Status === 'Available'" (click)="openRequestForm(tool)" class="request-button">Request</button>
+                <button *ngIf="tool.Status !== 'Available'" class="unavailable-button">Unavailable</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- User Tool Requests Section -->
+    <div class="tool-requests-container">
+      <h2>Your Tool Requests</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tool Name</th>
+              <th>Status</th>
+              <th>Request Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of userRequests">
+              <td>{{ getToolName(request.toolID) }}</td>
+              <td>{{ request.status }}</td>
+              <td>{{ request.timereq | date: 'dd-MM-yyyy HH:mm' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button (click)="clearRequestHistory()" class="clear-history-button">Cancel & Clear Requests</button>
+    </div>
+  
+    <!-- Request Form Modal -->
+    <div class="popup-overlay" *ngIf="showRequestForm">
+        <div class="popup-content">
+          <h3>Request Tool</h3>
+          <p>Please provide your email and reason for requesting this tool.</p>
+      
+          <label for="email">Email</label>
+          <input type="email" id="email" [(ngModel)]="requestEmail" placeholder="Enter your email">
+      
+          <label for="reason">Reason</label>
+          <textarea id="reason" [(ngModel)]="requestReason" rows="3" placeholder="Enter reason for request"></textarea>
+      
+          <div class="popup-buttons">
+            <button class="popup-button submit-button" (click)="submitRequest()">Submit</button>
+            <button class="popup-button cancel-button" (click)="closeRequestForm()">Cancel</button>
+          </div>
+        </div>
+      </div>
+  

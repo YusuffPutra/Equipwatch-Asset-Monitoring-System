@@ -1,6 +1,11 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
+import { initializeApp } from 'firebase/app'; // Import Firebase initialization function
+import { environment } from './environments/environment'; // Import your Firebase config
 
-bootstrapApplication(AppComponent, appConfig)
+// Initialize Firebase
+initializeApp(environment.firebaseConfig);
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
   .catch((err) => console.error(err));

@@ -1,0 +1,29 @@
+<div class="login-container">
+   <h1 class="login-title">
+      <div>
+        <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span><span>M</span><span>E</span>
+        <span>&nbsp;</span>
+        <span>T</span><span>O</span>
+      </div>
+      <div>
+        <span>E</span><span>Q</span><span>U</span><span>I</span><span>P</span><span>W</span><span>A</span><span>T</span><span>C</span><span>H</span>
+        <span>.</span>
+      </div>
+    </h1>
+    
+    
+  <div class="login-box">
+     <form (ngSubmit)="login()">
+        <div class="form-group">
+           <label for="email">Email:</label>
+           <input type="email" [(ngModel)]="email" name="email" required placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+           <label for="password">Password:</label>
+           <input type="password" [(ngModel)]="password" name="password" required placeholder="Enter your password">
+        </div>
+        <button type="submit" class="login-button">Login</button>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+     </form>
+  </div>
+</div>

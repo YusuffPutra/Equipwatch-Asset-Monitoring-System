@@ -1,0 +1,134 @@
+$primary-color: #B491E5;
+$background-color: #ffffff;
+$secondary-background: #E4E4E6;
+$text-color: #2D3032;
+$light-grey: #A3A4A6;
+
+.dashboard-container {
+  padding: 30px;
+  background-color: $background-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInDashboard 0.8s ease-in-out;
+
+  @keyframes fadeInDashboard {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 2rem;
+      color: $text-color;
+      margin-bottom: 10px;
+      font-weight: bold;
+      animation: breathingEffect 1.5s ease-in-out infinite alternate;
+
+      @keyframes breathingEffect {
+        from {
+          color: $text-color;
+        }
+        to {
+          color: $primary-color;
+        }
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $light-grey;
+      margin-top: 5px;
+    }
+  }
+
+  .usage-history-page {
+    margin-top: 20px;
+    background-color: $background-color;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    animation: fadeInUsageHistory 0.8s ease-in-out;
+
+    @keyframes fadeInUsageHistory {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: $primary-color;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid $secondary-background;
+        text-align: center;
+        color: $text-color;
+        font-size: 1rem;
+      }
+
+      th {
+        background-color: $secondary-background;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+
+      tr:nth-child(even) {
+        background-color: lighten($secondary-background, 15%);
+      }
+
+      tbody tr:hover {
+        background-color: lighten($secondary-background, 10%);
+      }
+    }
+  }
+
+  button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: $primary-color;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px lighten($primary-color, 20%);
+    }
+  }
+}

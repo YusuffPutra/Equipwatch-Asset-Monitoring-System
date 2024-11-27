@@ -1,0 +1,267 @@
+
+<div class="manage-tools-page">
+  <!-- Left side: Manage Tools Table with Search and Sort -->
+  <div class="manage-tools-container">
+    <h3>Manage Tools</h3>
+
+    <div class="search-sort-container">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search by Tool Name" 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearchChange()" 
+      />
+      
+      <label for="sortBy">Sort By:</label>
+      <select [(ngModel)]="sortBy" class="sort-select" (change)="sortTools()">
+        <option value="Name">Name</option>
+        <option value="Status">Status</option>
+        <option value="Location">Location</option>
+        <option value="Category">Category</option>
+        <option value="Condition">Condition</option>
+        <option value="Brand">Brand</option>
+        <option value="ModelNumber">Model Number</option>
+      </select>
+    </div>
+
+    <!-- Scrollable table container with fixed height -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Condition</th>
+            <th>Brand</th>
+            <th>Model Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tool of filteredTools">
+            <td>{{ tool.Name }}</td>
+            <td>{{ tool.Status }}</td>
+            <td>{{ tool.Location }}</td>
+            <td>{{ tool.Category }}</td>
+            <td>{{ tool.Condition }}</td>
+            <td>{{ tool.Brand }}</td>
+            <td>{{ tool.ModelNumber }}</td>
+            <td>
+              <button class="action-button edit" (click)="editTool(tool)">Edit</button>
+              <button class="action-button delete" (click)="deleteTool(tool.id)">Delete</button>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Right side: Add Tools Form -->
+  <div class="add-tools-container">
+    <h4>Add Tools Form</h4>
+    <form (ngSubmit)="saveNewTool()">
+      <label for="toolName">Tool Name:</label>
+      <select [(ngModel)]="currentTool.Name" name="toolName" required>
+       
+        <option value="Hand Drill">Hand Drill</option>
+<option value="Electric Saw">Electric Saw</option>
+<option value="Circular Saw">Circular Saw</option>
+<option value="Heat Gun">Heat Gun</option>
+<option value="Impact Driver">Impact Driver</option>
+<option value="Angle Grinder">Angle Grinder</option>
+<option value="Cordless Screwdriver">Cordless Screwdriver</option>
+<option value="Jigsaw">Jigsaw</option>
+<option value="Table Saw">Table Saw</option>
+<option value="Power Sander">Power Sander</option>
+<option value="Nail Gun">Nail Gun</option>
+<option value="Rotary Hammer Drill">Rotary Hammer Drill</option>
+<option value="Paint Sprayer">Paint Sprayer</option>
+<option value="Tile Cutter">Tile Cutter</option>
+<option value="Chainsaw">Chainsaw</option>
+<option value="Belt Sander">Belt Sander</option>
+<option value="Power Planer">Power Planer</option>
+<option value="Plasma Cutter">Plasma Cutter</option>
+<option value="Router">Router</option>
+<option value="Wet/Dry Vacuum">Wet/Dry Vacuum</option>
+<option value="Concrete Mixer">Concrete Mixer</option>
+<option value="Jackhammer">Jackhammer</option>
+<option value="Scaffolding">Scaffolding</option>
+<option value="Ladder">Ladder</option>
+<option value="Measuring Tape">Measuring Tape</option>
+<option value="Laser Level">Laser Level</option>
+<option value="Chop Saw">Chop Saw</option>
+<option value="Concrete Vibrator">Concrete Vibrator</option>
+<option value="Air Compressor">Air Compressor</option>
+<option value="Wheelbarrow">Wheelbarrow</option>
+<option value="Brick Trowel">Brick Trowel</option>
+<option value="Pipe Wrench">Pipe Wrench</option>
+<option value="Bolt Cutter">Bolt Cutter</option>
+<option value="Crowbar">Crowbar</option>
+<option value="Sledgehammer">Sledgehammer</option>
+<option value="Work Light">Work Light</option>
+<option value="Generator">Generator</option>
+<option value="Trenching Shovel">Trenching Shovel</option>
+<option value="Pickaxe">Pickaxe</option>
+<option value="Concrete Saw">Concrete Saw</option>
+<option value="Rebar Cutter">Rebar Cutter</option>
+<option value="Safety Harness">Safety Harness</option>
+<option value="Dust Extractor">Dust Extractor</option>
+<option value="Hydraulic Jack">Hydraulic Jack</option>
+<option value="Stud Finder">Stud Finder</option>
+<option value="Hard Hat">Hard Hat</option>
+<option value="Work Gloves">Work Gloves</option>
+
+      </select>
+
+      <label for="status">Status:</label>
+      <select [(ngModel)]="currentTool.Status" name="status" required>
+        <option value="Available">Available</option>
+        <option value="In Use">In Use</option>
+        <option value="Maintenance">Maintenance</option>
+        <option value="Out of Service">Out of Service</option>
+      </select>
+
+      <label for="location">Location:</label>
+      <select [(ngModel)]="currentTool.Location" name="location" required>
+        <option value="Warehouse 1">Warehouse 1</option>
+        <option value="Warehouse 2">Warehouse 2</option>
+      </select>
+
+      <label for="category">Category:</label>
+      <select [(ngModel)]="currentTool.Category" name="category" required>
+        <option value="Machines">Machines</option>
+        <option value="Hand Tools">Hand Tools</option>
+        <option value="Electrical">Electrical</option>
+        <option value="Plumbing">Plumbing</option>
+      </select>
+
+      <label for="condition">Condition:</label>
+      <select [(ngModel)]="currentTool.Condition" name="condition" required>
+        <option value="New">New</option>
+        <option value="Good">Good</option>
+        <option value="Service">Service</option>
+        <option value="Damaged">Damaged</option>
+      </select>
+
+      <label for="brand">Brand:</label>
+      <select [(ngModel)]="currentTool.Brand" name="brand" required>
+        <option value="Makita">Makita</option>
+        <option value="DeWalt">DeWalt</option>
+        <option value="Bosch">Bosch</option>
+        <option value="Hilti">Hilti</option>
+      </select>
+
+      <label for="modelNumber">Model Number:</label>
+      <input type="text" [(ngModel)]="currentTool.ModelNumber" name="modelNumber" required>
+
+      <button type="submit">Add Tool</button>
+    </form>
+  </div>
+
+  <!-- Edit Tool Modal -->
+  <div class="modal" *ngIf="isEditMode">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Edit Tool</h3>
+      <form (ngSubmit)="updateTool()">
+        <label for="name">Tool Name:</label>
+        <select [(ngModel)]="toolToEdit!.Name" name="name" required>
+          <option value="Hand Drill">Hand Drill</option>
+          <option value="Electric Saw">Electric Saw</option>
+          <option value="Circular Saw">Circular Saw</option>
+          <option value="Heat Gun">Heat Gun</option>
+          <option value="Impact Driver">Impact Driver</option>
+          <option value="Angle Grinder">Angle Grinder</option>
+          <option value="Cordless Screwdriver">Cordless Screwdriver</option>
+          <option value="Jigsaw">Jigsaw</option>
+          <option value="Table Saw">Table Saw</option>
+          <option value="Power Sander">Power Sander</option>
+          <option value="Nail Gun">Nail Gun</option>
+          <option value="Rotary Hammer Drill">Rotary Hammer Drill</option>
+          <option value="Paint Sprayer">Paint Sprayer</option>
+          <option value="Tile Cutter">Tile Cutter</option>
+          <option value="Chainsaw">Chainsaw</option>
+          <option value="Belt Sander">Belt Sander</option>
+          <option value="Power Planer">Power Planer</option>
+          <option value="Plasma Cutter">Plasma Cutter</option>
+          <option value="Router">Router</option>
+          <option value="Wet/Dry Vacuum">Wet/Dry Vacuum</option>
+          <option value="Concrete Mixer">Concrete Mixer</option>
+          <option value="Jackhammer">Jackhammer</option>
+          <option value="Scaffolding">Scaffolding</option>
+          <option value="Ladder">Ladder</option>
+          <option value="Measuring Tape">Measuring Tape</option>
+          <option value="Laser Level">Laser Level</option>
+          <option value="Chop Saw">Chop Saw</option>
+          <option value="Concrete Vibrator">Concrete Vibrator</option>
+          <option value="Air Compressor">Air Compressor</option>
+          <option value="Wheelbarrow">Wheelbarrow</option>
+          <option value="Brick Trowel">Brick Trowel</option>
+          <option value="Pipe Wrench">Pipe Wrench</option>
+          <option value="Bolt Cutter">Bolt Cutter</option>
+          <option value="Crowbar">Crowbar</option>
+          <option value="Sledgehammer">Sledgehammer</option>
+          <option value="Work Light">Work Light</option>
+          <option value="Generator">Generator</option>
+          <option value="Trenching Shovel">Trenching Shovel</option>
+          <option value="Pickaxe">Pickaxe</option>
+          <option value="Concrete Saw">Concrete Saw</option>
+          <option value="Rebar Cutter">Rebar Cutter</option>
+          <option value="Safety Harness">Safety Harness</option>
+          <option value="Dust Extractor">Dust Extractor</option>
+          <option value="Hydraulic Jack">Hydraulic Jack</option>
+          <option value="Stud Finder">Stud Finder</option>
+          <option value="Hard Hat">Hard Hat</option>
+          <option value="Work Gloves">Work Gloves</option>
+          
+        </select>
+
+        <label for="status">Status:</label>
+        <select [(ngModel)]="toolToEdit!.Status" name="status" required>
+          <option value="Available">Available</option>
+          <option value="In Use">In Use</option>
+          <option value="Maintenance">Maintenance</option>
+          <option value="Out of Service">Out of Service</option>
+        </select>
+
+        <label for="location">Location:</label>
+        <select [(ngModel)]="toolToEdit!.Location" name="location" required>
+          <option value="Warehouse 1">Warehouse 1</option>
+          <option value="Warehouse 2">Warehouse 2</option>
+        </select>
+
+        <label for="category">Category:</label>
+        <select [(ngModel)]="toolToEdit!.Category" name="category" required>
+          <option value="Machines">Machines</option>
+          <option value="Hand Tools">Hand Tools</option>
+          <option value="Electrical">Electrical</option>
+          <option value="Plumbing">Plumbing</option>
+        </select>
+
+        <label for="condition">Condition:</label>
+        <select [(ngModel)]="toolToEdit!.Condition" name="condition" required>
+          <option value="New">New</option>
+          <option value="Good">Good</option>
+          <option value="Service">Service</option>
+          <option value="Damaged">Damaged</option>
+        </select>
+
+        <label for="brand">Brand:</label>
+        <select [(ngModel)]="toolToEdit!.Brand" name="brand" required>
+          <option value="Makita">Makita</option>
+          <option value="DeWalt">DeWalt</option>
+          <option value="Bosch">Bosch</option>
+          <option value="Hilti">Hilti</option>
+        </select>
+
+        <label for="modelNumber">Model Number:</label>
+        <input type="text" [(ngModel)]="toolToEdit!.ModelNumber" name="modelNumber" required>
+
+        <button type="submit">Save Changes</button>
+        <button type="button" (click)="closeEditModal()">Cancel</button>
+      </form>
+    </div>
+    <div class="modal-backdrop" (click)="closeEditModal()"></div>
+  </div>
+</div>

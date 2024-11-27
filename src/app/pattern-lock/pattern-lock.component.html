@@ -1,0 +1,25 @@
+<div class="pattern-page">
+    <div class="pattern-title">
+      <h1>Pattern-Lock</h1>
+      <p>Forgot Your Pattern ? Contact Admin</p>
+    </div>
+
+    <div
+      class="pattern-container"
+      (mousedown)="startDrawing()"
+      (mouseup)="stopDrawing()"
+    >
+      <div
+        *ngFor="let cell of grid; index as i"
+        class="pattern-cell"
+        [class.selected]="cell"
+        (mouseenter)="hoverCell(i)"
+        (mousedown)="selectCell(i)"
+      ></div>
+    </div>
+
+    <button (click)="clearPattern()">Clear Pattern</button>
+
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+  </div>

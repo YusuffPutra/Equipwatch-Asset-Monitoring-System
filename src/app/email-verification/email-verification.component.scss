@@ -1,0 +1,83 @@
+.email-verification-container {
+  text-align: center;
+  margin: 100px auto;
+  max-width: 600px;
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15), 0px 6px 6px rgba(0, 0, 0, 0.1);
+  animation: float 6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.email-verification-container::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(111, 66, 193, 0.3), transparent 70%);
+  z-index: -1;
+  animation: pulse 5s infinite;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.email-verification-container h1 {
+  color: #6f42c1;
+  margin-bottom: 20px;
+  font-size: 2.2rem;
+  text-shadow: 0px 4px 8px rgba(111, 66, 193, 0.6);
+}
+
+.email-verification-container p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.email-verification-container button {
+  background: linear-gradient(145deg, #6f42c1, #5a36a3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(111, 66, 193, 0.6), 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.email-verification-container button:hover {
+  background: linear-gradient(145deg, #5a36a3, #4d2e8d);
+  box-shadow: 0px 6px 12px rgba(111, 66, 193, 0.8), 0px 3px 6px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+}
+
+.email-verification-container button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 3px 6px rgba(111, 66, 193, 0.5), 0px 1px 3px rgba(0, 0, 0, 0.15);
+}

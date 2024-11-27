@@ -1,0 +1,305 @@
+$primary-color: #B491E5;
+$background-color: #ffffff;
+$secondary-background: #E4E4E6;
+$light-grey: #A3A4A6;
+$medium-grey: #7D7F80;
+$text-color: #2D3032;
+$edit-color: #4CAF50;     // Green color for Edit button
+$delete-color: #E57373;   // Red color for Delete button
+
+// Main container for the Manage Tools page
+.manage-tools-page {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+// Styling for the Manage Tools container (left side)
+.manage-tools-container {
+    flex: 1;
+    padding: 30px;
+    background-color: $background-color;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    h3 {
+        color: $primary-color;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .search-sort-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid $secondary-background;
+        border-radius: 13px;
+        background-color: lighten($secondary-background, 30%);
+    }
+
+    .search-input, .sort-select {
+        padding: 10px;
+        border: 1px solid $medium-grey;
+        border-radius: 5px;
+        font-size: 0.95rem;
+        width: 30%;
+        box-sizing: border-box;
+        transition: box-shadow 0.3s ease;
+
+        &:focus {
+            box-shadow: 0 0 8px rgba($primary-color, 0.3);
+        }
+    }
+
+    .table-wrapper {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+
+        th, td {
+            padding: 12px;
+            border: 1px solid $secondary-background;
+            text-align: center;
+            color: $text-color;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: $secondary-background;
+            font-weight: bold;
+            color: $medium-grey;
+            font-size: 1.1rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: lighten($secondary-background, 15%);
+        }
+
+        // Styling for Edit and Delete buttons with fixed width
+        button {
+          width: 80px; // Ensures consistent width for both buttons
+          padding: 2px;
+          margin: 0 5px;
+          border: none;
+          border-radius: 5px;
+          font-weight: bold;
+          color: #ffffff;
+          cursor: pointer;
+          transition: background-color 0.3s ease, transform 0.2s;
+
+          &.edit {
+              background-color: $edit-color;
+
+              &:hover {
+                  background-color: darken($edit-color, 10%);
+                  transform: scale(1.05);
+              }
+          }
+
+          &.delete {
+              background-color: $delete-color;
+
+              &:hover {
+                  background-color: darken($delete-color, 10%);
+                  transform: scale(1.05);
+              }
+          }
+
+          &:active {
+              transform: scale(1);
+          }
+      }
+  }
+}
+
+// Styling for Add Tools Form container (right side)
+.add-tools-container {
+    flex: 1;
+    padding: 25px;
+    background-color: lighten($background-color, 5%);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h4 {
+        color: $primary-color;
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid $secondary-background;
+        border-radius: 10px;
+        background-color: lighten($secondary-background, 30%);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: $text-color;
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        select, input[type="text"] {
+            padding: 10px;
+            border: 1px solid $medium-grey;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            width: 100%;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease;
+
+            &:focus {
+                box-shadow: 0 0 8px rgba($primary-color, 0.3);
+            }
+        }
+
+        button[type="submit"] {
+            margin-top: 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: $primary-color;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+// Modal styling for editing tools
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+  width: 400px;
+  padding: 20px;
+  background-color: $background-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  animation: scaleIn 0.4s ease-in-out; // Scale-in animation for the modal box
+
+
+    h3 {
+        color: $primary-color;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: $text-color;
+        }
+
+        input, select {
+            padding: 10px;
+            border: 1px solid $medium-grey;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            transition: box-shadow 0.3s ease;
+
+            &:focus {
+                box-shadow: 0 0 8px rgba($primary-color, 0.3);
+            }
+        }
+
+        button {
+          margin-top: 10px;
+          padding: 10px;
+          border: none;
+          border-radius: 8px;
+          background-color: $primary-color;
+          color: #ffffff;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background-color 0.3s ease, transform 0.2s;
+
+          &:hover {
+              background-color: darken($primary-color, 10%);
+              transform: scale(1.05);
+          }
+
+          &:nth-child(2) {
+              background-color: #ccc;
+              color: #333;
+
+              &:hover {
+                  background-color: darken(#ccc, 10%);
+              }
+          }
+      }
+  }
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+// Animations for fade-in and scale-in
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+      opacity: 0;
+      transform: scale(0.8);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}

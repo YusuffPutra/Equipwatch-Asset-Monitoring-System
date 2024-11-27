@@ -1,0 +1,128 @@
+@keyframes gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.unauthorized-container {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.unauthorized-container:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+@keyframes breathing {
+    0% {
+        transform: scale(1); /* Original size */
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        transform: scale(1.05); /* Slightly larger */
+        opacity: 0.9; /* Slightly faded */
+    }
+    100% {
+        transform: scale(1); /* Back to original size */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+.unauthorized-container h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    color: #6f42c1; /* Primary purple color */
+    position: relative; /* Required for pseudo-elements */
+    display: inline-block; /* Keeps the title neatly aligned with lines */
+    padding: 0 20px; /* Adds space between the text and the lines */
+    animation: breathing 3s infinite; /* Adds the breathing animation */
+}
+
+
+.unauthorized-container h1::before,
+.unauthorized-container h1::after {
+    content: ""; /* Empty content for decorative lines */
+    position: absolute;
+    top: 50%; /* Center the lines vertically */
+    width: 80px; /* Line length */
+    height: 3px; /* Line thickness */
+    background: linear-gradient(90deg, #6f42c1, #a066ff); /* Gradient for lines */
+    z-index: -1; /* Keep lines behind the text */
+}
+
+.unauthorized-container h1::before {
+    left: -100px; /* Position the left line */
+}
+
+.unauthorized-container h1::after {
+    right: -100px; /* Position the right line */
+}
+
+@keyframes pulse-lines {
+    0% {
+        box-shadow: 0 0 10px rgba(111, 66, 193, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(160, 102, 255, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(111, 66, 193, 0.3);
+    }
+}
+.unauthorized-container p {
+    font-size: 1.3rem;
+    color: #4a4a4a;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    transition: color 0.4s ease; /* Smooth transition for text */
+}
+
+.unauthorized-container p:hover {
+    color: #6f42c1; /* Change text color on hover */
+}
+.unauthorized-container h1:hover::before,
+.unauthorized-container h1:hover::after {
+    animation: pulse-lines 1.5s infinite; /* Add a glowing pulse animation to lines */
+}
+.unauthorized-container button {
+    display: inline-block;
+    background-color: #6f42c1;
+    color: #ffffff;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Show pointer cursor on hover */
+    box-shadow: 0px 5px 15px rgba(111, 66, 193, 0.3);
+    text-decoration: none;
+    transition: all 0.4s ease; /* Smooth transition for hover effects */
+}
+
+.unauthorized-container button:hover {
+    background-color: #5a36a3;
+    box-shadow: 0px 8px 20px rgba(90, 54, 163, 0.4);
+    transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.unauthorized-container button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0px 8px 20px rgba(90, 54, 163, 0.6); /* Add focus effect */
+}

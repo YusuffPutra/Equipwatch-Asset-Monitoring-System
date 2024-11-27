@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+// Define your new color palette
+$primary-color: #B491E5;       // Softer purple for accent color
+$background-color: #ffffff;    // White background for a cleaner look
+$secondary-background: #E4E4E6; // Light grey for sections or cards on the white background
+$light-grey: #A3A4A6;          // Softer light grey for text or elements
+$medium-grey: #7D7F80;         // Medium grey for components
+$text-color: #2D3032;          // Dark grey for text on white background
+
+// Use these colors to set up your primary elements
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: Arial, sans-serif;
+}

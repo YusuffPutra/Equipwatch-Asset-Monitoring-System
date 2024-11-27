@@ -1,0 +1,74 @@
+<div class="usage-history-page">
+  <div class="header">
+    <h3>Tool Usage History</h3>
+    <button class="generate-pdf-button" (click)="generatePDF()">Generate PDF Report</button>
+  </div>  
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool Name</th>
+        <th>Model Number</th>
+        <th>Brand</th>
+        <th>Last Checked Out Date</th>
+        <th>Last Checked Out User</th>
+        <th>Returned Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let history of usageHistory">
+        <td>{{ history.Name }}</td>
+        <td>{{ history.ModelNumber }}</td>
+        <td>{{ history.Brand }}</td>
+        <td>{{ history.LastCheckedOutDate | date: 'medium' }}</td>
+        <td>{{ history.LastCheckedOutUser }}</td>
+        <td>{{ history.ReturnedDate ? (history.ReturnedDate | date: 'medium') : 'Not Returned' }}</td>
+        <td>
+          <!-- Edit Button -->
+      
+          
+          <!-- Returned Button -->
+          <button 
+          class="action-button return" 
+          (click)="markAsReturned(history)" 
+          [disabled]="!!history.ReturnedDate">
+          Returned
+        </button>
+        
+        <button 
+          class="action-button clear" 
+          (click)="clearReturnedDate(history.id)" 
+          [disabled]="!history.ReturnedDate">
+          Clear Returned Date
+        </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Edit Modal -->
+  <div class="modal" *ngIf="isEditMode">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Edit Tool Usage Information</h3>
+      <form (ngSubmit)="updateUsage()">
+        
+        <!-- Last Checked Out Date -->
+        <label for="lastCheckedOutDate">Last Checked Out Date:</label>
+        <input type="datetime-local" [(ngModel)]="usageToEdit!.LastCheckedOutDate" name="lastCheckedOutDate" required>
+        
+        <!-- Last Checked Out User -->
+        <label for="lastCheckedOutUser">Last Checked Out User:</label>
+        <input type="text" [(ngModel)]="usageToEdit!.LastCheckedOutUser" name="lastCheckedOutUser" required>
+
+        <!-- Returned Date -->
+        <label for="returnedDate">Returned Date:</label>
+        <input type="datetime-local" [(ngModel)]="usageToEdit!.ReturnedDate" name="returnedDate">
+
+        <button class="modal-button save" type="submit">Save Changes</button>
+        <button class="modal-button cancel" type="button" (click)="closeEditModal()">Cancel</button>
+      </form>
+    </div>
+    <div class="modal-backdrop" (click)="closeEditModal()"></div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <!-- Welcome User Section -->
+  <div class="welcome-section">
+    <h1>Welcome !</h1>
+    <p>Here you can view your tool usage history.</p>
+  </div>
+
+  <!-- Tool Usage History Section -->
+  <div class="usage-history-page">
+    <h3>My Usage History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Tool Name</th>
+          <th>Model Number</th>
+          <th>Brand</th>
+          <th>Last Checked Out Date</th>
+          <th>Returned Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let history of usageHistory">
+          <td>{{ history.Name }}</td>
+          <td>{{ history.ModelNumber }}</td>
+          <td>{{ history.Brand }}</td>
+          <td>{{ convertToDate(history.LastCheckedOutDate) | date: 'medium' }}</td>
+          <td>{{ convertToDate(history.ReturnedDate) | date: 'medium' }}</td>
+          
+          
+          
+          
+      </tbody>
+    </table>
+  </div>
+

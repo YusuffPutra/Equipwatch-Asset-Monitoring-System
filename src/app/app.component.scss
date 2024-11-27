@@ -1,0 +1,292 @@
+// Color variables
+$primary-color: #B491E5;       // Softer purple for accent color
+$background-color: #ffffff;     // White background for a cleaner look
+$secondary-background: #E4E4E6; // Light grey for sections or cards on the white background
+$light-grey: #A3A4A6;           // Softer light grey for text or elements
+$medium-grey: #7D7F80;          // Medium grey for components
+$text-color: #2D3032;           // Dark grey for text on white background
+$footer-background: #f7f7f7;    // Very light grey for footer background
+
+// Navbar styling
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: linear-gradient(
+    to right,
+    lighten($secondary-background, 5%),
+    $secondary-background,
+    darken($secondary-background, 5%)
+  );
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeInSlideDown 0.6s ease-in-out;
+  border-bottom: 1px solid lighten($secondary-background, 20%);
+
+  @keyframes fadeInSlideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.brand {
+  font-size: 1.5em; /* Larger font size for bold impact */
+  font-weight: 800; /* Extra-bold for premium look */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between brand parts */
+  cursor: pointer; /* Interactivity */
+  text-transform: uppercase; /* Clean uppercase style */
+  letter-spacing: 3px; /* Slightly increased spacing for elegance */
+  position: relative;
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+
+  &:hover {
+    transform: scale(1.05); /* Slight enlarge effect */
+  }
+
+  .brand-equip,
+  .brand-watch {
+    background: linear-gradient(
+      to right,
+      lighten($primary-color, 10%),
+      $primary-color,
+      darken($primary-color, 20%)
+    ); /* Gradient for a premium feel */
+    background-clip: text; /* Clip the gradient to the text */
+    -webkit-background-clip: text; /* WebKit compatibility */
+    -webkit-text-fill-color: transparent; /* Show only the gradient */
+    -webkit-text-fill-color: transparent; /* Compatibility for older browsers */
+    animation: shimmer 2s infinite; /* Smooth shimmer effect */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  }
+
+  .brand-equip {
+    animation: bounceEquip 3s infinite ease-in-out; /* Gentle bounce effect */
+  }
+
+  .brand-watch {
+    animation: pulseGlow 3s infinite alternate; /* Glowing effect */
+  }
+}
+
+/* Animation: Gentle shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation: Gentle bounce for 'Equip' */
+@keyframes bounceEquip {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Animation: Pulsing glow for 'Watch' */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 10px $primary-color, 0 0 20px lighten($primary-color, 20%);
+  }
+  100% {
+    text-shadow: 0 0 20px $primary-color, 0 0 40px lighten($primary-color, 40%);
+  }
+}
+
+
+// Define the reject color at the top
+// Define the reject color at the top
+$reject-color: #e57373; /* Example color */
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  
+  .nav-link {
+    color: $text-color;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.4s ease-in-out;
+    background: transparent;
+    background-clip: text;
+
+    /* Persistent gradient for active page */
+    &.active {
+      color: white;
+      background: linear-gradient(
+        to right,
+        rgba(186, 104, 200, 0.8),
+        rgba(103, 58, 183, 0.8),
+        rgba(63, 81, 181, 0.8)
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      box-shadow: 0 4px 12px rgba(186, 104, 200, 0.6),
+                  0 0 20px rgba(103, 58, 183, 0.8);
+      animation: subtleGlow 2.5s infinite;
+    }
+
+    &:hover {
+      color: white;
+      box-shadow: 0 4px 15px rgba(186, 104, 200, 0.5), 
+                  0 0 10px rgba(103, 58, 183, 0.7);
+      transform: translateY(-4px) scale(1.05); /* Lift and slightly enlarge */
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: linear-gradient(
+        to right,
+        rgba(186, 104, 200, 0.4),
+        rgba(103, 58, 183, 0.4),
+        rgba(63, 81, 181, 0.4)
+      );
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      transition: width 0.3s ease, height 0.3s ease, opacity 0.3s;
+      opacity: 0.5;
+    }
+
+    &:hover::before {
+      width: 200%;
+      height: 200%;
+      opacity: 0.8;
+    }
+
+    /* Add a glow effect for active and hover states */
+    &.active::before,
+    &:hover::before {
+      box-shadow: 0 0 20px rgba(103, 58, 183, 0.8);
+    }
+  }
+}
+
+/* Keyframes for subtle glow animation */
+@keyframes subtleGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(186, 104, 200, 0.6),
+                0 0 20px rgba(103, 58, 183, 0.8);
+  }
+  50% {
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.7),
+                0 0 25px rgba(103, 58, 183, 0.9);
+  }
+}
+
+
+
+
+// Main content styling
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px); // Adjust for header and footer height
+  padding: 20px;
+  background-color: $background-color;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  background: linear-gradient(
+    to right,
+    lighten($secondary-background, 5%),
+    $secondary-background,
+    darken($secondary-background, 5%)
+  );
+  color: darken($text-color, 10%);
+  text-align: center;
+  font-size: 0.9em;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid lighten($secondary-background, 20%);
+  animation: fadeInSlideUp 0.6s ease-in-out;
+
+  @keyframes fadeInSlideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: darken($text-color, 15%);
+  }
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+
+  .footer-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: $primary-color;
+    background: linear-gradient(
+      to right,
+      lighten($primary-color, 15%),
+      $primary-color,
+      darken($primary-color, 10%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+

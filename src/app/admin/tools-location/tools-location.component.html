@@ -1,0 +1,142 @@
+<div class="container">
+  <!-- Left Container: Beacon Status -->
+  <div class="beacon-container">
+    <h2 class="beacon-title">Beacon Status</h2>
+
+    <!-- Button to Start Scanning -->
+    <button (click)="scanForBeaconDevices()" class="scan-button">Scan for Beacons</button>
+
+    <!-- Adjustable Geofence Threshold -->
+    <div class="geofence-settings">
+      <label for="rssi-threshold">Set RSSI Threshold:</label>
+      <input
+        id="rssi-threshold"
+        type="number"
+        [(ngModel)]="rssiThreshold"
+        placeholder="-90"
+        (input)="updateOutOfRangeBeacons()"
+      />
+    </div>
+    
+
+    <!-- Table Showing Beacon Status -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>UUID</th>
+          <th>RSSI</th>
+          <th>Last Updated</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let beacon of beacons"
+          [class.out-of-range]="beacon.connectionStatus === 'Out of Range'"
+        >
+          <td>{{ beacon.name }}</td>
+          <td>{{ beacon.uuid }}</td>
+          <td>{{ beacon.rssi }}</td>
+          <td>{{ beacon.timestamp | date: 'short' }}</td>
+          <td>{{ beacon.connectionStatus || 'Available' }}</td>
+          <td>
+            <button
+              *ngIf="beacon.status !== 'Assigned'"
+              class="assign-beacon-btn"
+              (click)="openAssignModal(beacon)"
+            >
+              Assign
+            </button>
+            <button
+              *ngIf="beacon.status === 'Assigned'"
+              class="deassign-beacon-btn"
+              (click)="deassignBeacon(beacon)"
+            >
+              De-assign
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Right Container: Geofence Alerts -->
+  <div class="alerts-container">
+    <h2 class="alert-title">Geofence Alerts</h2>
+    <div class="toggle-wrapper">
+      <span class="toggle-label">
+        {{ soundEnabled ? 'Sound Alerts Enabled' : 'Sound Alerts Disabled' }}
+      </span>
+      <label class="toggle-switch">
+        <input type="checkbox" [checked]="soundEnabled" (change)="toggleSound()" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  
+    <!-- No Alerts Message -->
+    <div *ngIf="outOfRangeBeacons.length === 0" class="no-alerts">
+      No beacons are out of range.
+    </div>
+  
+    <!-- Current Alerts -->
+    <ul *ngIf="outOfRangeBeacons.length > 0">
+      <li *ngFor="let beacon of outOfRangeBeacons">
+        <div class="alert-details">
+          <div class="alert-header">
+            <span class="alert-name">{{ beacon.name }}</span>
+            <span class="alert-badge">Out of Range</span>
+          </div>
+          <span class="alert-time">Last seen at: {{ beacon.timestamp | date: 'short' }}</span>
+        </div>
+        <button (click)="dismissAlert(beacon)">Dismiss</button>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Modal for Assigning Beacon -->
+  <div class="modal-overlay" *ngIf="showModal">
+    <div class="modal">
+      <h3 class="modal-title">Assign Beacon to a Tool</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tool Name</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Model Number</th>
+            <th>Brand</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tool of tools">
+            <td>{{ tool.Name }}</td>
+            <td>{{ tool.Status }}</td>
+            <td>{{ tool.Location }}</td>
+            <td>{{ tool.Category }}</td>
+            <td>{{ tool.ModelNumber || 'N/A' }}</td>
+            <td>{{ tool.Brand || 'N/A' }}</td>
+            <td>
+              <button
+                [disabled]="tool.Status === 'Assigned'"
+                [ngClass]="{
+                  'disabled-button': tool.Status === 'Assigned',
+                  'assign-button': tool.Status === 'Available'
+                }"
+                (click)="assignBeaconToTool(tool)"
+              >
+                {{ tool.Status === 'Assigned' ? 'Assigned' : 'Assign' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal-actions">
+        <button class="close-btn" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
